@@ -1,0 +1,56 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  text-align: center;
+}
+
+a {
+  color: #00B7FF;
+}
+.loginForm{
+  margin-top: 50px;
+  margin-left: 40%;
+  border-color: #DADBDC;
+  background-color: #F8F9FA;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 15px;
+  width: 20%;
+  padding: 10px;
+  text-align: left;
+}
+
+.gumb{
+  margin-left: 10%;
+  width: 80%;
+  margin-top: 30px;
+}
+
+.submitForm{
+  margin-left: 40%;
+  border-color: #DADBDC;
+  background-color: #F8F9FA;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 15px;
+  width: 20%;
+  padding: 10px;
+  text-align: left;
+}
+
+label{
+  font-weight: bold;
+}
+
+.errorLabel{
+  width: 50%;
+  margin-left: 25%;
+}
+
+.viewCounter{
+  margin-left: 90%;
+  margin-top: 5px;
+}
+
+.borderLeft{
+  border-left: 1px solid black;
+}

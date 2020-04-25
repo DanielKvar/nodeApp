@@ -1,0 +1,30 @@
+<html>
+<head>
+    <title>Vaja 1</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-light">
+    <ul class="navbar-nav" id="navi">
+        {{#if user}}
+            <li class="nav-item"><a href="/questions/all" class="nav-link">Domov</a></li>
+            <li class="nav-item"><a href="/users/profile" class="nav-link">Profil</a></li>
+            <li class="nav-item"><a href="/questions/myquestions" class="nav-link">Moja vprasanja</a></li>
+            <li class="nav-item"><a href="/questions/all" class="nav-link">Vprasanja</a></li>
+            <li class="nav-item"><a href="/questions/create" class="nav-link">Postavi vprasanje</a></li>
+            <li class="nav-item"><a type="button" href="/users/logout" class="nav-link">Odjava</a></li>
+        {{else}}
+            <li class="nav-item"><a href="/questions/all" class="nav-link">Domov</a></li>
+            <li class="nav-item"><a href="/users/login" class="nav-link">Prijava</a></li>
+            <li class="nav-item"><a href="/users/register" class="nav-link">Registracija</a></li>
+            <li class="nav-item"><a href="/questions/all" class="nav-link">Vprasanja</a></li>
+        {{/if}}
+    </ul>
+</nav>
+{{{body}}}
+</body>

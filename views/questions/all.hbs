@@ -1,0 +1,68 @@
+<div>
+    <form class="form-inline" style="width: 15%;margin:auto">
+        <input class="form-control" type="search" placeholder="Išči po tagih" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Išči</button>
+    </form>
+</div>
+
+<div id="comments">
+</div>
+<script>
+    axios.get('/questions')
+            .then(function (response) {
+                for (var question of response.data) {
+                    (function (question_scoped) {
+                        getUser(question_scoped.user_id).then(function (user) {
+                            var cnode = document.createElement("div");
+                            cnode.innerHTML += '<div class="oglas card bg-light p-3" style="width: 50%;margin-left: 25%;margin-top: 25px;text-align: left"><p style="padding-left:5px">' +
+                                    '<img src="../'+ user.image +'" width="50px" height="50px"><b style="padding-left:5px">' + user.username + '</b></p><h2 style="padding-left: 20px;margin-bottom: 0px">'
+                                    + question_scoped.title + '</h2>' + '</br>' + '<p style="background-color: lavender; padding: 5px; border-radius: 10px; margin-left: 20px">'
+                                    + question_scoped.description + '</p>' + '</br></br>' + '<p style="width: 30%; margin-left:70%">datum objave: '
+                                    + question_scoped.date + '<hr/>' +
+                                    '<h3 style="margin-top:5px;margin-bottom:20px ">Odgovori</h3><div style="width: 90%;margin-left: 10%;text-align: left;" id="' + question_scoped._id + '"></div>' +
+                                    '<a href="/answers/create/' + question_scoped._id + '" >{{#if user}}<button class="btn btn-primary" style="width: 20%; margin-left:78%; margin-top: 10px ;">Odgovori</button>{{/if}}</a></div>';
+                            document.getElementById("comments").appendChild(cnode);
+                            answers(question_scoped._id, question_scoped.answered);
+                        });
+                    })(question);
+                }
+            }).catch(function (error) {
+        console.log(error);
+    });
+
+    function answers(question_id, answered) {
+        axios.get('/answers/getanswers/' + question_id)
+                .then(function (answers) {
+                    var prviIzpisan = false;
+                    for (var answer of answers.data) {
+                        (function (answer_scoped) {
+                            var prviIzpisan = false;
+                            getUser(answer_scoped.user_id).then(function (user) {
+                                var divnode = document.createElement("div");
+                                divnode.className = "borderLeft";
+                                if (answer_scoped.choosen) {
+                                    divnode.innerHTML += '<p style="padding-left:5px"><img src="../'+ user.image +'" width="50px" height="50px"><b style="padding-left:5px">' + user.username + '</b></p><p class="alert alert-success" style="padding: 5px; border-radius: 10px; margin: 10px">' + answer_scoped.description + '</p><p style="text-align: right">' + answer_scoped.date + '</p>';
+                                    prviIzpisan = true;
+                                } else {
+                                    divnode.innerHTML += '<p style="padding-left:5px"><img src="../'+ user.image +'" width="50px" height="50px"><b style="padding-left:5px">' + user.username + '</b></p><p style="background-color: lavender; padding: 5px; border-radius: 10px; margin: 10px">' + answer_scoped.description + '</p><p style="text-align: right">' + answer_scoped.date + '</p>';
+                                }
+                                document.getElementById(question_id).appendChild(divnode);
+                            });
+                        })(answer);
+                    }
+                }).catch(function (error) {
+            console.log(error);
+        })
+    }
+
+    function getUser(user_id) {
+        return axios.get('/users/' + user_id)
+                .then(function (user) {
+                    console.log(user.data.username);
+                    return user.data;
+                }).catch(function (error) {
+                    console.log(error);
+                });
+    }
+
+</script>

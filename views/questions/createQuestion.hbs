@@ -1,0 +1,19 @@
+<div class="loginForm">
+    <h2 style="text-align: center">Postavi vprašanje</h2>
+    <hr>
+    <form action="/questions" method="POST">
+        <div class="form-group">
+            <label>Vprašanje:*</label>
+            <input type="text" name="title" class="form-control" required/>
+        </div>
+        <div class="form-group">
+            <label>Opis Vprašanja:*</label>
+            <textarea name="description" class="form-control" style="height: 200px" required></textarea>
+        </div>
+        <div class="form-group">
+            <label>Tagi:*</label>
+            <input type="text" name="tags" class="form-control" required/>
+        </div>
+        <input type="submit" name="Vprasaj" value="Vprašaj" class="btn btn-primary gumb"/>
+    </form>
+</div>

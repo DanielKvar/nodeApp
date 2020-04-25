@@ -1,0 +1,17 @@
+<div class="loginForm">
+    <h2 style="text-align: center">Odgovor</h2>
+    <hr>
+    <form action="/answers" method="POST">
+        <input type="text" id="question_id" name="question_id" hidden>
+        <div class="form-group">
+            <label>Odgovor:</label>
+            <textarea name="description" class="form-control" style="height: 200px" required></textarea>
+        </div>
+        <input type="submit" name="odgovor" value="Odgovori" class="btn btn-primary gumb"/>
+    </form>
+</div>
+<script>
+    var url = (window.location).href
+    var questionId = url.split('/').pop();
+    document.getElementById("question_id").value = questionId;
+</script>
